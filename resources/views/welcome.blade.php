@@ -25,44 +25,43 @@
                 </div>
             @endif
 
-            <header class="bg-blue-600 text-white py-4">
+            <header class="bg-blue-400 text-white py-4">
                 <div class="container mx-auto flex justify-between items-center">
                     <h1 class="text-2xl font-semibold">Portfolio</h1>
                     <ul class="flex space-x-4">
-                        @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline_none">Dashboard</a>
-                    @else
-                        <li><a href="{{ route('login') }}"></a></li>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                      
                         <li><a href="#" class="hover:underline">Home</a></li>
-                        <li><a href="#" class="hover:underline">About</a></li>
+                        <li><a href="#" class="hover:underline">Over mij</a></li>
                         <li><a href="#" class="hover:underline">Portfolio</a></li>
                         <li><a href="#" class="hover:underline">Contact</a></li>
+                        @auth
+                        <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}"></a></li>
+                        @if (Route::has('register'))
+                           <li><a href="{{ route('register') }}">Register</a></li>
+                        @endif
+                    @endauth
                     </ul>
                 </div>
             </header>
                 <header class="bg-blue-600 text-white py-16 text-center">
                     <h1 class="text-4xl font-semibold">Welkom op mijn pagina</h1>
                     <p class="mt-4 text-lg">web development.</p>
-                    <a href="#" class="mt-8 inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300">View My Work</a>
+                    <a href="#">
                 </header>
-                    <div class="p-6 border-t border-gray-100 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <h2>About me</h2>
+                <div class="p-6 border-t border-gray-100 dark:border-gray-700 md:border-t-0 md:border-l">
+                        <h2 class="text-3xl font-semibold mb-8">About me</h2>
                     </div>
                     
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
                     <div class="ml-12">
-                        <div class="mt-2 text-gray-600 dark:text-black-400 text-sm">
+                        
                             Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
                         </div>
                     </div>
-
                     <section class="bg-gray-200 py-16">
                         <div class="container mx-auto text-center">
                             <h2 class="text-3xl font-semibold mb-8">Hobbies</h2>
@@ -70,9 +69,17 @@
                                 <!-- Hobby Block 1 -->
                                 <div class="bg-white p-4 rounded-lg shadow-lg">
                                     <h3 class="text-xl font-semibold mb-2">Hobby 1</h3>
-                                    <p class="text-gray-600">Hobby 2</p>
+                                    <p class="text-gray-400">Hobby 2</p>
                                 </div>
+                                                              <!-- Hobby Block 2 -->
+                            <div class="bg-white p-4 rounded-lg shadow-lg">
+                                <h3 class="text-xl font-semibold mb-2">Hobby 1</h3>
+                                <p class="text-gray-400">Hobby 2</p>
                             </div>
+                            </div>
+
+
+                        </div>
 
 
                     <div class="ml-12">
@@ -81,10 +88,16 @@
                         </div>
                     </div>
                 </div>
+
                 </body>
               
                 </div>
             
-                
+           
+                <footer class="bg-blue-600 text-white py-4 text-center w-full">
+                    <div class="container mx-auto">
+                        <p>&copy; 2023 Wesley</p>
+                    </div>
+                </footer>     
     </body>
 </html>
