@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 </head>
 <body class="antialiased">
     <header class="bg-blue-400 text-white py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center"> <!-- Added px-4 for padding -->
+        <div class="container mx-auto px-4 flex justify-between items-center"> <!-- 4 pixels padding ruimte -->
             <h1 class="text-2xl font-semibold">Portfolio</h1>
             <ul class="flex space-x-4">
                 <li><a href="#" class="hover:underline">Home</a></li>
@@ -34,37 +36,53 @@
     
   
     
-    <div class="container mx-auto text-center mt-15">
+    <div class="container mx-auto text-center mt-15 bg-fixed bg-blue-600">
         <div class="bg-blue-600 text-white py-16 text-center">
         <h2 class="text-3xl font-semibold mb-8">Hobbies</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             <!-- Hobby Block 1 -->
-            <div class="bg-white p-4 rounded-lg shadow-lg">
-                <h3 class="text-gray-700 font-semibold mb-2">Hobby 1</h3>
-                <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+            <div class="bg-blue-500 p-4 rounded-lg shadow-lg">
+                <h3 class="text-white-700 font-semibold mb-2">Hobby 1</h3>
+                <p class="text-white-700">Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
             </div>
             <!-- Hobby Block 2 -->
-            <div class="bg-white p-4 rounded-lg shadow-lg">
-                <h3 class="text-gray-700 font-semibold mb-2">Hobby 2</h3>
-                <p class="text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
+            <div class="bg-blue-500 p-4 rounded-lg shadow-lg">
+                <h3 class="text-white-700 font-semibold mb-2">Hobby 2</h3>
+                <p class="text-white-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
             </div>
             <!-- Hobby Block 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-lg">
-                <h3 class="text-gray-700 font-semibold mb-2">Hobby 3</h3>
-                <p class="text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
+            <div class="bg-blue-500 p-4 rounded-lg shadow-lg">
+                <h3 class="text-white-700 font-semibold mb-2">Hobby 3</h3>
+                <p class="text-white-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
             </div>
             <!-- Hobby Block 4 -->
-            <div class="bg-white p-4 rounded-lg shadow-lg">
-                <h3 class="text-gray-700 font-semibold mb-2">Hobby 4</h3>
-                <p class="text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
+            <div class="bg-blue-500 p-4 rounded-lg shadow-lg">
+                <h3 class="text-white-700 font-semibold mb-2">Hobby 4</h3>
+                <p class="text-white-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit...</p>
             </div>
         </div>
     </div>
-    </div>
-    <footer class="bg-blue-600 text-white py-4 text-center mt-20"> <!-- margin top 20 -->
+</div>
+ <!-- socials -->
+ <div class="text-center mt-8">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Socials</h2>
+ <div class="flex justify-center mt-8">
+    <a href="https://github.com/yourgithubprofile" class="text-blue-600 hover:text-blue-800 mr-4">
+        <i class="fab fa-github-square fa-4x"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/yourlinkedinprofile" class="text-blue-600 hover:text-blue-800 mr-4">
+        <i class="fab fa-linkedin fa-4x"></i>
+    </a>
+    <a href="mailto:youremail@outlook.com" class="text-blue-600 hover:text-blue-800">
+        <i class="fas fa-envelope fa-4x"></i>
+    </a>
+</div>
+     <!-- Footer -->
+     <footer class="bg-blue-600 text-white py-4 text-center mt-10"> <!-- Margin Top 10 -->
         <div class="container mx-auto">
-            <p>&copy; 2023 Wesley</p>
+            <p>&copy; 2023 Wesley | Project: Mijn Portfolio | Plek: Curio terheijdense weg 350</p>
         </div>
     </footer>
+    
 </body>
 </html>
