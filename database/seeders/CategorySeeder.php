@@ -16,5 +16,13 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'Laravel',
         ]);
+
+        Category::create([
+            'name' => 'Larave2',
+        ]);
+
+        Category::create([
+            'name' => 'Laravel3',
+        ]);
     }
 }

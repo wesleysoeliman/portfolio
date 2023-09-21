@@ -12,6 +12,6 @@ class Project extends Model
     protected $fillable = ['title', 'description', 'image', 'category_id'];
 
     public function category(){
-        return $this->hasOne(Project::class);
+        return $this->belongsTo(Category::class);
     }
 }

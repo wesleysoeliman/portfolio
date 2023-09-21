@@ -24,6 +24,12 @@
                             <label for="description">Afbeelding:</label>
                             <input type="text" name="image" id="image" class="form-control" placeholder="image path">
                         </div>
+
+                        <select name="category_id" id="1"> 
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                         <a class="btn btn-primary">
                         <input type="submit" value="Project item opslaan">
                         </a>
