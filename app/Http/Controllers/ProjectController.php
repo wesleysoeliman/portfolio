@@ -38,8 +38,6 @@ class ProjectController extends Controller
             'image' => $request->image,
             'category_id' => $request->category_id,
         ]);
-
- 
         return redirect()->route('projects.index')->with('succes', 'Project is aangemaakt');
     }
 
@@ -54,24 +52,72 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $projects)
+    public function edit(Project $project)
     {
-        return view('projects.edit', compact('projects'));
+        $categories = Category::all();
+        return view('projects.edit', compact('project', 'categories'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
+     public function search(Request $request)
+     {
+         $search = $request->search;
+     
+         $projects = Project::where(function ($query) use ($search) {
+             $query->where('title', 'like', "%$search%")
+                   ->orWhere('description', 'like', "%$search%");
+         })
+         ->orWhereHas('category', function ($query) use ($search) {
+             $query->where('name', 'like', "%$search%");
+         })
+         ->get();
+         return view('projects.index', compact('projects', 'search'));
+     }
+     
+     
+     public function update(Request $request, Project $project)
+     {
+         $request->validate([
+             'title' => ['required'],
+             'image' => ['required'],
+             'description' => ['required'],
+             'category_id' => ['required'],
+         ]);
+     
+         // Update the project attributes with values from the request
+         $project->title = $request->input('title');
+         $project->image = $request->input('image');
+         $project->description = $request->input('description');
+         $project->category_id = $request->input('category_id');
+     
+         // Save the updated project
+         $project->save();
+     
+         return redirect()
+             ->route('projects.index')
+             ->with('success', 'Project is geüpdatet'); // Use 'success' instead of 'Edit is geüpdatet'
+     }
+     
+
+ 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        {
+    
+            $project = Project::findOrFail($id); // 
+    
+            $project->delete();
+            return redirect()
+                ->route('projects.index')
+                ->with('success', 'Project verwijderd');
+    
+        }
     }
 }
