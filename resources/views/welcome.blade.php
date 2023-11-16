@@ -13,22 +13,31 @@
         <div class="container mx-auto px-4 flex justify-between items-center"> <!-- 4 pixels padding ruimte -->
             <h1 class="text-2xl font-semibold">Portfolio</h1>
             <ul class="flex space-x-4">
-                <li><a href="#" class="hover:underline">Home</a></li>
-                <li><a href="#" class="hover:underline">About me</a></li>
-                <li><a href="#" class="hover:underline">Hobbies</a></li>
-                <li><a href="#" class="hover:underline">Contact</a></li>
+                   @auth
+                        <a href="{{ url('dashboard') }}" class="hover:underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="hover:underline">Log in</a>
+
+                        @endauth
+                        
             </ul>
         </div>
     </header>
     <header class="bg-blue-600 text-white py-16 text-center">
         <h1 class="text-4xl font-semibold">Welkom op mijn pagina</h1>
         <p class="mt-4 text-lg">web development.</p>
+        <div class="text-center mt-4">
+            <a href="{{ url('projects') }}" class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Projects
+            </a>
+        </div>
+        
     </header>
     <div class="p-6 border-t border-gray-100 md:border-t-0 md:border-l">
         <h2 class="text-3xl font-semibold mb-8 text-center">About me</h2>
         <div class="flex justify-center items-center ml-12">
             <p>
-                Hello, I'm [Your Name]. I am a passionate web developer with expertise in Laravel, PHP, and JavaScript. I love building web applications and exploring new technologies. Feel free to get in touch with me to discuss your next project!
+                Hello, I'm [Your Name]. I am a passionate web developer with expertise in Laravel, 
                 Hello, I'm [Your Name]. I am a passionate web developer with expertise in Laravel, PHP, and JavaScript. I love building web applications and exploring new technologies. Feel free to get in touch with me to discuss your next project!
             </p>
         </div>
@@ -82,7 +91,6 @@
         <div class="container mx-auto">
             <p>&copy; 2023 Wesley | Project: Mijn Portfolio | Plek: Curio terheijdense weg 350</p>
         </div>
-    </footer>
-    
+    </footer>    
 </body>
 </html>
