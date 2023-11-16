@@ -14,8 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('projects.index')
-        ->with('projects', $projects);
+        return view('projects.index')->with('projects', $projects);
     }
 
     /**
@@ -32,21 +31,40 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        Project::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'image' => $request->image,
-            'category_id' => $request->category_id,
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required',
         ]);
-        return redirect()->route('projects.index')->with('succes', 'Project is aangemaakt');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->storeAs('public/img', $imageName);
+
+            $imageName = 'storage/img/' . $imageName;
+
+            Project::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'image' => $imageName,
+                'category_id' => $request->category_id,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Project is aangemaakt');
+        }
+
+        return redirect()->back()->with('error', 'Geen afbeelding geüpload');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return view('projects.show',compact('project'));
     }
 
     /**
@@ -56,68 +74,50 @@ class ProjectController extends Controller
     {
         $categories = Category::all();
         return view('projects.edit', compact('project', 'categories'));
-
     }
 
     /**
      * Update the specified resource in storage.
      */
+    public function update(Request $request, Project $project)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+        ]);
 
-     public function search(Request $request)
-     {
-         $search = $request->search;
-     
-         $projects = Project::where(function ($query) use ($search) {
-             $query->where('title', 'like', "%$search%")
-                   ->orWhere('description', 'like', "%$search%");
-         })
-         ->orWhereHas('category', function ($query) use ($search) {
-             $query->where('name', 'like', "%$search%");
-         })
-         ->get();
-         return view('projects.index', compact('projects', 'search'));
-     }
-     
-     
-     public function update(Request $request, Project $project)
-     {
-         $request->validate([
-             'title' => ['required'],
-             'image' => ['required'],
-             'description' => ['required'],
-             'category_id' => ['required'],
-         ]);
-     
-         // Update the project attributes with values from the request
-         $project->title = $request->input('title');
-         $project->image = $request->input('image');
-         $project->description = $request->input('description');
-         $project->category_id = $request->input('category_id');
-     
-         // Save the updated project
-         $project->save();
-     
-         return redirect()
-             ->route('projects.index')
-             ->with('success', 'Project is geüpdatet'); // Use 'success' instead of 'Edit is geüpdatet'
-     }
-     
+        // Update the project attributes with values from the request
+        $project->title = $request->input('title');
+        $project->description = $request->input('description');
+        $project->category_id = $request->input('category_id');
 
- 
+        // Check if there is a new image uploaded
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $image->storeAs('public/img', $imageName);
+
+            $imageName = 'storage/img/' . $imageName;
+
+            $project->image = $imageName;
+        }
+
+        // Save the updated project
+        $project->save();
+
+        return redirect()->route('dashboard')->with('success', 'Project is geüpdatet');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        {
-    
-            $project = Project::findOrFail($id); // 
-    
-            $project->delete();
-            return redirect()
-                ->route('projects.index')
-                ->with('success', 'Project verwijderd');
-    
-        }
+        $project = Project::findOrFail($id);
+
+        $project->delete();
+        return redirect()->route('dashboard')->with('success', 'Project verwijderd');
     }
 }
